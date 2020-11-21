@@ -36,7 +36,10 @@ void main()
 
   drawString5x7(10,10, "switches:", COLOR_GREEN, COLOR_BLUE);
 
-  while (1) {
+  pacMan();
+
+  while (1)
+    {
 
     u_int switches = p2sw_read(), i;
 
@@ -46,14 +49,14 @@ void main()
 
     for (i = 0; i < 4; i++)
 
-      str[i] = (switches & (1<<i)) ? '-' : '1';
+      str[i] = (switches & (1<<i)) ? '0' : '1';
       
     str[4] = 0;
 
     result = readBits(result, str);
     
     drawString5x7(10,20, str, COLOR_GREEN, COLOR_BLUE);
-     drawString5x7(40,20, result, COLOR_GREEN, COLOR_BLUE);
+    drawString5x7(40,20, result, COLOR_GREEN, COLOR_BLUE);
     
   }
 

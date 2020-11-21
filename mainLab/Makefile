@@ -1,4 +1,4 @@
-all: main.elf libShape.a
+all: main.elf shapeLib.a
 
 
 

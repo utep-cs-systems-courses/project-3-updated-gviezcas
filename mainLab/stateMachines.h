@@ -6,4 +6,6 @@ char* readBits(char *bits, char str[]);
 
 void pacMan();
 
+void pacManOpen();
+
 #endif

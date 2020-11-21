@@ -55,7 +55,6 @@ char* readBits(char *bits, char str[])
     }
   else if(str[1] == '1')
     {
-      fillRectangle(20, 40, 30, 30, COLOR_RED);
       return bits = "04";
     }
   else if(str[2] == '1')
@@ -71,16 +70,47 @@ char* readBits(char *bits, char str[])
       return bits = "00";
     }
 }
-/*
+
 void pacMan()
 {
-  AbCircle circle14;
-  
-  Layer layer0 = {
-    (AbShape *)&circle14,
-    {(screenWidth/2)+10, (screenHeight/2)+5},
-    {0,0}, {0,0}, COLOR_ORANGE, };
+  fillRectangle(0, screenHeight/3, 30, 30, COLOR_YELLOW);
 
-  layerDraw(&layer0);
+  int r = (screenHeight/2)-5;
+  int c = screenWidth/10+5;
+
+  for(int i = 0; i < 13; i++)
+    {
+      drawPixel(c, r, COLOR_BLACK);
+      c++;
+    }
+  /*
+  r = (screenHeight/2)-5;
+  c = screenWidth/10;
+
+  
+  for(int offc = 0; offc < 18; offc++)
+    {
+      for(int offr = 0; offr <= offc-5; offr++)
+	{
+	  
+	  drawPixel(c+offc, r-offr, COLOR_BLACK);
+	  
+	}
+      
+    }
+  */
 }
-*/
+
+void pacManOpen()
+{
+  int r = (screenHeight/2)-5;
+  int c = screenWidth/10;
+
+  for(int offc = 0; offc < 18; offc++)
+    {
+      for(int offr = 0; offr <= offc-5; offr++)
+	{
+	  drawPixel(c+offc, r-offr, COLOR_BLACK);
+	}
+    }
+}
