@@ -1,27 +1,30 @@
+#include <msp430.h>
+
 #include "stateMachines.h"
 
-void
+#include "switches.h"
+
+#include "buzzer.h"
+
+#include "led.h"
 
 
 
-__interrupt_vec(WDT_VECTOR) WDT(){/* 250 interrupts/sec */
-
-
+void __interrupt_vec(WDT_VECTOR) WDT()
+{/* 250 interrupts/sec */
 
   static char count = 0;
 
-  if (++blink_count == 125){
-
-
-
+  if (++count == 125){
+    
     pacManOpen();
+    //buzzer_set_period(2000);
 
-
-
-    count = 0;
-
-
-
-  }
+    }
+  if(++count == 250)
+    {
+      pacMan();
+      //buzzer_set_period(1000);
+    }
 
 }

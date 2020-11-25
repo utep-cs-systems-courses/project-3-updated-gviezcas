@@ -2,10 +2,18 @@
 
 #define stateMachine_included
 
-char* readBits(char *bits, char str[]);
+
+
+void state_advance();
+
+void state_dim();
+
+void state_siren();
+
+void state_off();
 
 void pacMan();
 
 void pacManOpen();
 
-#endif
+#endif // included

@@ -14,7 +14,7 @@ void wdt_c_handler()
   static int secCount = 0;
 
   secCount ++;
-  if (secCount == 250) {		/* once/sec */
+  if (secCount == 500) {		/* once/sec */
     secCount = 0;
     fontFgColor = (fontFgColor == COLOR_GREEN) ? COLOR_BLACK : COLOR_GREEN;
     redrawScreen = 1;
@@ -37,7 +37,7 @@ void main()
     if (redrawScreen) {
       redrawScreen = 0;
       char counter = 0;
-      //drawString5x7(20,20, "hello", fontFgColor, COLOR_BLUE);
+      drawString5x7(20,20, "hello", fontFgColor, COLOR_ORANGE);
       switch(counter){
       case 0:
 	fillRectangle(20, 20, 30, 20, COLOR_RED);
