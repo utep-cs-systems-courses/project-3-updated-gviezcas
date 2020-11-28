@@ -33,12 +33,15 @@ void main()
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
   clearScreen(COLOR_BLUE);
-  while (1) {			/* forever */
-    if (redrawScreen) {
+  while (1)
+    {			/* forever */
+    if (redrawScreen)
+      {
       redrawScreen = 0;
       char counter = 0;
       drawString5x7(20,20, "hello", fontFgColor, COLOR_ORANGE);
-      switch(counter){
+      switch(counter)
+	{
       case 0:
 	fillRectangle(20, 20, 30, 20, COLOR_RED);
 	counter++;
@@ -47,13 +50,13 @@ void main()
 	fillRectanble(100, 100, 30, 20, COLOR_YELLOW);
 	counter = 0;
 	break;
-      }
+	}
       // clearScreen(COLOR_BLUE);
-    }
+      }
     P1OUT &= ~LED_GREEN;	/* green off */
     or_sr(0x10);		/**< CPU OFF */
     P1OUT |= LED_GREEN;		/* green on */
-  }
+    }
 }
 
     

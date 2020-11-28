@@ -10,7 +10,7 @@
 
 
 
-void __interrupt_vec(WDT_VECTOR) WDT()
+void wdt_c_handler()
 {/* 250 interrupts/sec */
 
   static char count = 0;

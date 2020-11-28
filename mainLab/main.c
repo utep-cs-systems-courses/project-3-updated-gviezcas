@@ -14,18 +14,18 @@
 
 #include "stateMachines.h"
 
-
+#define LED_GREEN BIT6
 
 void main()
 
 {
+  P1DIR |= LED_GREEN;
+  P1OUT |= LED_GREEN;
 
   configureClocks();/* setup master oscillator, CPU & peripheral clocks */
   lcd_init();
   p2sw_init(15);
-  //switch_init(); //Initializes the switches.
-  // led_init();    //Initializes the LEDs.
-   buzzer_init(); //Initializes the buzzer.
+  buzzer_init(); //Initializes the buzzer.
 
   enableWDTInterrupts();/* enable periodic interrupt */
 
@@ -37,7 +37,7 @@ void main()
   clearScreen(COLOR_BLACK);
 
   
-  drawString8x12(10,10, "switches:", COLOR_GREEN, COLOR_BLACK);
+  drawString11x16(5,5, "switches:", COLOR_GREEN, COLOR_BLACK);
 
 
   while (1)
@@ -58,12 +58,15 @@ void main()
 
       result = readBits(result, str);
 
-      drawString5x7(10,20, str, COLOR_GREEN, COLOR_BLACK);
+      drawString5x7(10,30, str, COLOR_GREEN, COLOR_BLACK);
 
-      drawString5x7(40,20, result, COLOR_GREEN, COLOR_BLACK);
+      drawString5x7(40,30, result, COLOR_GREEN, COLOR_BLACK);
 
+      P1OUT &= ~LED_GREEN;
+      or_sr(0x18);
+      P1OUT |= LED_GREEN;
     }
-
-  or_sr(0x18);/* CPU off, GIE on */
+  
+  //or_sr(0x18);/* CPU off, GIE on */
 
 }
