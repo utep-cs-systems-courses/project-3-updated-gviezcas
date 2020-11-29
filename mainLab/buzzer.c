@@ -51,15 +51,3 @@ void buzzer_set_period(short cycles) /* buzzer clock = 2MHz.  (period of 1k resu
     CCR1 = cycles >> 1;/* one half cycle */
   
 }
-
-void buzzer_update()/*Waits for switch 2 to change states to start the siren.*/
-{
-
-  if(switch2_state_changed)
-  {
-
-    state_siren();
-
-  }
-
-}

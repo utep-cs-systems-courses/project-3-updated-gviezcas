@@ -19,9 +19,9 @@
 void main()
 
 {
-  P1DIR |= LED_GREEN;
-  P1OUT |= LED_GREEN;
-
+  
+  led_init();
+  switch_init();
   configureClocks();/* setup master oscillator, CPU & peripheral clocks */
   lcd_init();
   p2sw_init(15);
@@ -66,7 +66,5 @@ void main()
       or_sr(0x18);
       P1OUT |= LED_GREEN;
     }
-  
-  //or_sr(0x18);/* CPU off, GIE on */
 
 }

@@ -15,55 +15,29 @@ unsigned char led_changed = 0;
 static char redVal[] = {0, LED_RED}, greenVal[] = {0, LED_GREEN};
 
 
-
-
-
 void led_init()
 
 {
-
   P1DIR |= LEDS;// bits attached to leds are output
-
-  switch1_state_changed = 1;
-
+  switch_state_changed = 1;
   led_update();
-
 }
 
 
-/*Updates the LED from red to green.*/
+/*Turns on red LED with button.*/
 void led_update()
 
 { 
-  
-    char ledFlags = 0;
+  if(switch_state_changed)
+    {
+    char ledFlags = redVal[red_on];
 
-    ledFlags |= switch1_state_down ? LED_GREEN : 0;// When switch 1 is down turn on green.
-
-    ledFlags |= switch1_state_down ? 0 : LED_RED;// When switch 1 is up turn on red.
+    
+    ledFlags |= switch_state_down ? LED_RED : 0;     // When switch 1 is down turn on red.
     
     P1OUT &= (0xff - LEDS) | ledFlags; // clear bit for off leds
 
     P1OUT |= ledFlags;     // set bit for on leds
-    
-}
-
-/*Sets bits for red LED to be on and off*/
-void led_dim()
-{
-  
-  if (led_changed) {
-
-    char ledFlags = redVal[red_on];
-
-
-
-    P1OUT &= (0xff^LEDS) | ledFlags; // clear bit for off leds
-
-    P1OUT |= ledFlags;     // set bit for on leds
-
-    led_changed = 0;
-
-  }
-  
+    }
+  switch_state_down = 0;
 }

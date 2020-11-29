@@ -15,10 +15,10 @@ void wdt_c_handler()
 
   static char count = 0;
 
-  if (++count == 125){
-    
-    pacManOpen();
-    //buzzer_set_period(2000);
+  if (++count == 125)
+    {
+      pacManOpen();
+      //buzzer_set_period(2000);
 
     }
   if(++count == 250)

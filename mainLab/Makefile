@@ -26,7 +26,7 @@ AS              = msp430-elf-as -mmcu=${CPU} -c
 AR              = msp430-elf-ar
 
 
-main.elf: main.o stateMachines.o buzzer.o led.o switches.o wdInterruptHandler.o wdt_handler.o
+main.elf: main.o stateMachines.o buzzer.o led.o switches.o wdInterruptHandler.o wdt_handler.o p1_interrupt_handler.o wd_redInterruptHandler.o
 
 	$(CC) $(CFLAGS) ${LDFLAGS} -o $@ $^ -lLcd -lp2sw -lTimer
 
