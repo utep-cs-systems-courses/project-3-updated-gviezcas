@@ -5,7 +5,7 @@
 #include "switches.h"
 
 
-
+/*Interrupt handler for the red LED*/
 void redLEDInterrupt(){/* 250 interrupts/sec */
 
   static char blink_count = 0;

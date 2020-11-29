@@ -14,6 +14,8 @@
 
 #include "shape.h"
 
+char song;
+
 
 /*Toggles the red LED on and off.*/
 char toggle_red()/* always toggle! */
@@ -64,7 +66,7 @@ void state_advance()
 
 }
 
-/*Turns off the buzzer, siren and sets the brightness of the red LED back to default.*/
+/*Turns off the buzzer.*/
 void state_off()
 {
 
@@ -79,6 +81,7 @@ void state_off()
 
 }
 
+/*Reads the bits being displayed on the screen and returns the binary representation.*/
 char* readBits(char *bits, char str[])
 
 {
@@ -213,13 +216,12 @@ char* readBits(char *bits, char str[])
 
 }
 
+/*Draws a yellow rectangle shape with a line representing a closed mouth.*/
 void pacMan()
 
 {
 
   fillRectangle(0, screenHeight/3, 30, 30, COLOR_YELLOW);
-
-
 
   int r = (screenHeight/2)-5;
 
@@ -238,6 +240,7 @@ void pacMan()
     }
 }
 
+/*Draws the open mouth for the pacman.*/
 void pacManOpen()
 
 {

@@ -33,7 +33,7 @@ void led_update()
     char ledFlags = redVal[red_on];
 
     
-    ledFlags |= switch_state_down ? LED_RED : 0;     // When switch 1 is down turn on red.
+    ledFlags |= switch_state_down ? LED_RED : 0;     // When switch is down turn on red.
     
     P1OUT &= (0xff - LEDS) | ledFlags; // clear bit for off leds
 

@@ -4,6 +4,8 @@
 
 #include "led.h"
 
+#include "stateMachines.h"
+
 
 
 char switch_state_down, switch_state_changed; /* effectively boolean */
@@ -51,19 +53,20 @@ switch_init()/* setup switch */
 }
 
 
-
+/*Interrupt handler for the switch on the red board.*/
 void
 
 switch_interrupt_handler()
 
 {
+  char state = 0;
 
   char p1val = switch_update_interrupt_sense();
 
-  switch_state_down = (p1val & SW1) ? 0 : 1; /* 0 when SW1 is up */
+  switch_state_down = (p1val & SW1) ? 0 : 1; /* 0 when switch on red board is up */
 
   switch_state_changed = 1;
 
-  led_update();
+  state_off();
 
 }

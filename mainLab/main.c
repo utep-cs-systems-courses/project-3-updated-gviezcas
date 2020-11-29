@@ -20,23 +20,23 @@ void main()
 
 {
   
-  led_init();
-  switch_init();
+  led_init();/* Initialize LED's*/
+  switch_init();/*Initialize red board switch*/
   configureClocks();/* setup master oscillator, CPU & peripheral clocks */
-  lcd_init();
-  p2sw_init(15);
-  buzzer_init(); //Initializes the buzzer.
+  lcd_init();/*Initialize LCD*/
+  p2sw_init(15);/*Initialize green board switches*/
+  buzzer_init(); /*Initializes the buzzer.*/
 
   enableWDTInterrupts();/* enable periodic interrupt */
 
-  or_sr(0x8);
+  or_sr(0x8);/*GIE on*/
 
   u_char width = screenWidth, height = screenHeight;
 
 
   clearScreen(COLOR_BLACK);
 
-  
+  /*Draw an 11x16 string on LCD*/
   drawString11x16(5,5, "switches:", COLOR_GREEN, COLOR_BLACK);
 
 
@@ -55,16 +55,16 @@ void main()
 	str[i] = (switches & (1<<i)) ? '0' : '1';
 
       str[4] = 0;
-
+      /*Show resulting decimal from binary number.*/
       result = readBits(result, str);
-
+      /*Draw the binary numbers.*/
       drawString5x7(10,30, str, COLOR_GREEN, COLOR_BLACK);
-
+      /*Draw the decimal numbers.*/
       drawString5x7(40,30, result, COLOR_GREEN, COLOR_BLACK);
-
-      P1OUT &= ~LED_GREEN;
-      or_sr(0x18);
-      P1OUT |= LED_GREEN;
+      
+      P1OUT &= ~LED_GREEN;/*Turn off green LED*/
+      or_sr(0x18);/*CPU off, GIE on*/
+      P1OUT |= LED_GREEN;/*Turn on green LED*/
     }
 
 }

@@ -9,7 +9,7 @@
 #include "led.h"
 
 
-
+/*Interrupt handler for square pacman animation.*/
 void wdt_c_handler()
 {/* 250 interrupts/sec */
 
@@ -17,14 +17,20 @@ void wdt_c_handler()
 
   if (++count == 125)
     {
-      pacManOpen();
-      //buzzer_set_period(2000);
+      pacManOpen();/*Opens mouth after half a second.*/
+      if(switch_state_changed)/*Turns off buzzer of switch state changes.*/
+	{
+	  buzzer_set_period(2000);/*Sets buzzer.*/
+	}
 
     }
   if(++count == 250)
     {
-      pacMan();
-      //buzzer_set_period(1000);
+      pacMan();/*Closes mouth after one second.*/
+      if(switch_state_changed)
+	{
+	  buzzer_set_period(1000);/*Sets buzzer.*/
+	}
     }
 
 }
