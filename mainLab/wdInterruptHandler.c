@@ -8,6 +8,8 @@
 
 #include "led.h"
 
+short redrawScreen = 1;
+
 
 /*Interrupt handler for square pacman animation.*/
 void wdt_c_handler()
@@ -32,5 +34,5 @@ void wdt_c_handler()
 	  buzzer_set_period(1000);/*Sets buzzer.*/
 	}
     }
-
+  redrawScreen = 1;
 }
