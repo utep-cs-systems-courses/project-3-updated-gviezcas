@@ -16,7 +16,7 @@ void wdt_c_handler()
 {/* 250 interrupts/sec */
 
   static char count = 0;
-
+  
   if (++count == 125)
     {
       pacManOpen();/*Opens mouth after half a second.*/
@@ -33,6 +33,6 @@ void wdt_c_handler()
 	{
 	  buzzer_set_period(1000);/*Sets buzzer.*/
 	}
+      redrawScreen = 1;
     }
-  redrawScreen = 1;
 }
