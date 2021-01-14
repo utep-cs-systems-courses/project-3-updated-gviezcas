@@ -15,6 +15,8 @@
 #include "shape.h"
 
 char song;
+int i;
+extern char F();
 
 
 /*Toggles the red LED on and off.*/
@@ -174,47 +176,43 @@ char* readBits(char *bits, char str[])
 
     }
 
-  else if(str[0] == '1')
-
+  else if(str[0] == '0' && str[1] == '0' && str[2] == '0' && str[3] == '0')
+    
     {
-
-      return bits = "08";
-
-    }
-
-  else if(str[1] == '1')
-
-    {
-
-      return bits = "04";
-
-    }
-
-  else if(str[2] == '1')
-
-    {
-
-      return bits = "02";
-
-    }
-
-  else if(str[3] == '1')
-
-    {
-
-      return bits = "01";
-
-    }
-
-  else
-
-    {
-
+      
       return bits = "00";
-
+      
     }
+  
+  do
+    {
+    if(str[i] == '1')
+      {
+	bits = F();
+	/*
+	  switch(i)
+	    {
+	    case 0:
+	      bits = "08";
+	      break;
+	    case 1:
+	      bits = "04";
+	      break;
+	    case 2:
+	      bits = "02";
+	      break;
+	    case 3:
+	      bits = "01";
+	      break;
+	    }
+	*/
+      }
+    i++;
+    }while(i < 4);
 
-}
+  return bits;
+	  
+ }
 
 /*Draws a yellow rectangle shape with a line representing a closed mouth.*/
 void pacMan()

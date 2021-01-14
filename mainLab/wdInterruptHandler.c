@@ -15,6 +15,8 @@ short redrawScreen = 1;
 void wdt_c_handler()
 {/* 250 interrupts/sec */
 
+  P1OUT |= LED_GREEN;
+
   static char count = 0;
   
   if (++count == 125)
@@ -23,6 +25,7 @@ void wdt_c_handler()
       if(switch_state_changed)/*Turns off buzzer of switch state changes.*/
 	{
 	  buzzer_set_period(2000);/*Sets buzzer.*/
+	  redrawScreen = 1;
 	}
 
     }
@@ -33,6 +36,5 @@ void wdt_c_handler()
 	{
 	  buzzer_set_period(1000);/*Sets buzzer.*/
 	}
-      redrawScreen = 1;
     }
 }
